@@ -4,9 +4,12 @@ Authors information
 Antonio J. Rueda
 ajrueda@ujaen.es
 
-Jose M. Noguera
+José M. Noguera
 jnoguera@ujaen.es
 http://noguerar.wordpress.com
+
+Cármen Martínez
+cmcruz@ujaen.es
 
 University of Jaen (Spain). 
 
@@ -22,9 +25,9 @@ Journal: *"Computers & Geosciences"*
 Folders
 --------
 
-* ./src/ Contains the source code in C++.
-* ./win32/ Contains two projects (.vcprof for Microsoft Visual Studio and .pri for Qt Developer) to compile the application.
-* ./dataset_301.hgt A small DEM (size 301x301 cells) for testing purposes. Extracted from the NASA SRTM 2.1 (http://dds.cr.usgs.gov/srtm/).
+* *./src/* Contains the source code in C++.
+* *./win32/* Contains two projects (.vcprof for Microsoft Visual Studio and .pri for Qt Developer) to compile the application.
+* *./dataset_301.hgt* A small DEM (size 301x301 cells) for testing purposes. Extracted from the NASA SRTM 2.1 (http://dds.cr.usgs.gov/srtm/).
 
 Additional information
 -----------------------
