@@ -36,37 +36,37 @@
 /** This class implements a static circular queue */
 template<typename T>
 class CircQueue {
-    std::vector<T> storage;
-    typename std::vector<T>::iterator first, last;
+	std::vector<T> storage;
+	typename std::vector<T>::iterator first, last;
 
 public:
-    /** Constructor */
-    CircQueue(size_t size = 1) : storage(size) {
-        first = last = storage.begin();
-    }
-    
-    /** Modifies the size of the queue.
+	/** Constructor */
+	CircQueue(size_t size = 1) : storage(size) {
+		first = last = storage.begin();
+	}
+
+	/** Modifies the size of the queue.
 	Warning: data are destroyed; iterators are moved to the begining. */
-    void resize(size_t size) {
-        storage.resize(size);
-        first = last = storage.begin();
-    }
-    
-    /** Insert an element */
-    void push(const T &t) {
-        *last = t;
-        if (++last == storage.end()) last = storage.begin();
-    }
-            
-    /** Get an element */
-    void pop() {
-        if (++first == storage.end()) first = storage.begin();
-    }
-            
-    /** Get the next element of the queue*/
-    T &top() {
-        return *first;
-    }
+	void resize(size_t size) {
+		storage.resize(size);
+		first = last = storage.begin();
+	}
+
+	/** Insert an element */
+	void push(const T &t) {
+		*last = t;
+		if (++last == storage.end()) last = storage.begin();
+	}
+
+	/** Get an element */
+	void pop() {
+		if (++first == storage.end()) first = storage.begin();
+	}
+
+	/** Get the next element of the queue*/
+	T &top() {
+		return *first;
+	}
 
 	/**Clear all the elements of the queue.*/
 	void clear() {
@@ -74,7 +74,6 @@ public:
 		first = last = storage.begin();
 	}
 };
-
 
 
 #endif

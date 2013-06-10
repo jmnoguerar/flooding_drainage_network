@@ -32,59 +32,59 @@ class Cell {
 
 public:
     
-    /** Constructor */
-    Cell();
-    
-    /** Sets the altitude Z value of the cell */
+	/** Constructor */
+	Cell();
+
+	/** Sets the altitude Z value of the cell */
 	inline void setZ(HEIGHT Z) { this->Z = Z;}
 
-    /** Sets the water level W of the cell */
+	/** Sets the water level W of the cell */
 	inline void setW(HEIGHT W){
 		if( getZ() > 0.0 )
-			this->W = W; 
+		this->W = W; 
 	}
 
-    /** Sets the accumulated water level DA of the cell */
-    inline void setDA(HEIGHT acumWH = 0) { this->DA = acumWH; }
+	/** Sets the accumulated water level DA of the cell */
+	inline void setDA(HEIGHT acumWH = 0) { this->DA = acumWH; }
 
-    /** Adds water to the W level of the cell */
-    void addW(HEIGHT W);
+	/** Adds water to the W level of the cell */
+	void addW(HEIGHT W);
 
-    /** Returns the altitude Z of the cell */
-    inline HEIGHT getZ() { 
+	/** Returns the altitude Z of the cell */
+	inline HEIGHT getZ() { 
 		return Z; 
 	}
 
-    /** Returns the water level W of the cell */
-    inline HEIGHT getW() { return W; }
+	/** Returns the water level W of the cell */
+	inline HEIGHT getW() { return W; }
 
-    /** Returns the altitude ZW of the cell */
-    inline HEIGHT getZW() { return Z + W; };
+	/** Returns the altitude ZW of the cell */
+	inline HEIGHT getZW() { return Z + W; };
 
-    /** Returns the accumulated water DA of the cell */
-    inline HEIGHT getDA() { return DA; }
-    
-    /** Mark the cell as belonging to the drainage network */
-    inline void markAsResult() { inResult = true; }
+	/** Returns the accumulated water DA of the cell */
+	inline HEIGHT getDA() { return DA; }
 
-    /** Unmark the cell as belonging to the drainage network */
-    inline void unMarkAsResult() { inResult = false; }
-    
-    /** Returns whether the cell belongs to the drainage network*/
-    inline bool isInResult() { return inResult; }
+	/** Mark the cell as belonging to the drainage network */
+	inline void markAsResult() { inResult = true; }
 
-    /** Returns a color according to the altitude Z of the cell */
-    void getHeightColor(int &r, int &g, int &b);
+	/** Unmark the cell as belonging to the drainage network */
+	inline void unMarkAsResult() { inResult = false; }
+
+	/** Returns whether the cell belongs to the drainage network*/
+	inline bool isInResult() { return inResult; }
+
+	/** Returns a color according to the altitude Z of the cell */
+	void getHeightColor(int &r, int &g, int &b);
 
 private:
-    /** Altitude Z of the center of the cell*/
-    HEIGHT Z;
-    /** Height W of the water of the cell */
-    HEIGHT W;
-    /** Accumulated water DA of the cell */
-    HEIGHT DA;
-    /** Indicates whether the cell belongs to the drainage network */
-    bool inResult;
+	/** Altitude Z of the center of the cell*/
+	HEIGHT Z;
+	/** Height W of the water of the cell */
+	HEIGHT W;
+	/** Accumulated water DA of the cell */
+	HEIGHT DA;
+	/** Indicates whether the cell belongs to the drainage network */
+	bool inResult;
 
 };
 

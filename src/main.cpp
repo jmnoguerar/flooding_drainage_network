@@ -55,18 +55,18 @@ using namespace std;
 
 int doDry(Grid &grid, bool verbose)
 {
-    float transfer = +INFINITY;
-    int n = 1;
+	float transfer = +INFINITY;
+	int n = 1;
 	if( verbose )
 		cout << "Iteration: ";
-    while (transfer > 1) {
+	while (transfer > 1) {
 		transfer = grid.dry();
 		if( !(n%10) && verbose ){
 			cout << n << " (" << transfer << ") ";
 			cout.flush();
 		}
-        ++n;
-    }    
+		++n;
+	}    
 	return n;
 }
 
@@ -74,20 +74,20 @@ int doDry(Grid &grid, bool verbose)
 
 int doFastWaterTransfer(Grid &grid, float minTransfer, bool verbose)
 {
-    grid.setupFastWaterTransfer();
-    
-    float transfer = +INFINITY;
-    int n = 1;
+	grid.setupFastWaterTransfer();
+	float transfer = +INFINITY;
+	int n = 1;
 	if( verbose )
 		cout << "Iteration: ";
-    while (transfer > minTransfer && n<10000) {
+		
+	while (transfer > minTransfer && n<10000) {
 		transfer = grid.fastWaterTransfer();
 		if( !(n%10) && verbose ){
 			cout << n << " (" << transfer << ") ";
 			cout.flush();
 		}
-        ++n;
-    }    
+		++n;
+	}    
 	return n;
 }
 
@@ -95,24 +95,24 @@ int doFastWaterTransfer(Grid &grid, float minTransfer, bool verbose)
 
 void printHelp( char *args )
 {
-	 cout << "Usage:" << endl;
-	 cout << "\t" << args << " FILE -x VALUE -y VALUE [parameters]" << endl;
-	 cout << endl;
-	 cout << "File:" << endl;
-	 cout << "\t<s>:\tInput .hgt file" << endl;
-	 cout << "Options:" << endl;
-	 cout << "\t-x\tX dimension X of the DEM (mandatory)." << endl;
-	 cout << "\t-y\tY dimension Y of the DEM (mandatory)." << endl;
-	 cout << "\t-w\tDepth of the initial water layer W (in millimeters) assigned  to each cell." << endl;
-	 cout << "\t-da\tMinimum drainage accumulation value DA (in millimeters) for a cell belongs to the drainage network (meters)." << endl;
-	 cout << "\t-s\t The algorithm stops once the water transferred in an iteration falls bellow this percentage of the total amount of water initially dropped on the DEM (percent 1-100)." << endl;
-	 cout << "\t-o\t Output file containing the drainage network. Most image format are supported. '.ply' format is also supported." << endl;
-	 cout << "\t-ow\t Output file containing the depth of the residual water layer W after the algorithm. If this parameter is not set, the data is not saved. Most image format are supported." << endl;
-	 cout << "\t-f\t Preprocess the terrain to fill the pits." << endl;
-	 cout << "\t-v\t Verbose. Prints real-time status of the program." << endl;
-	 cout << "\t-h\t Shows this help and exits." << endl;
-	 cout << endl;
-     cout << "2013 (c) Jose Maria Noguera and Antonio Rueda. University of Jaen." << endl << endl;
+	cout << "Usage:" << endl;
+	cout << "\t" << args << " FILE -x VALUE -y VALUE [parameters]" << endl;
+	cout << endl;
+	cout << "File:" << endl;
+	cout << "\t<s>:\tInput .hgt file" << endl;
+	cout << "Options:" << endl;
+	cout << "\t-x\tX dimension X of the DEM (mandatory)." << endl;
+	cout << "\t-y\tY dimension Y of the DEM (mandatory)." << endl;
+	cout << "\t-w\tDepth of the initial water layer W (in millimeters) assigned  to each cell." << endl;
+	cout << "\t-da\tMinimum drainage accumulation value DA (in millimeters) for a cell belongs to the drainage network (meters)." << endl;
+	cout << "\t-s\t The algorithm stops once the water transferred in an iteration falls bellow this percentage of the total amount of water initially dropped on the DEM (percent 1-100)." << endl;
+	cout << "\t-o\t Output file containing the drainage network. Most image format are supported. '.ply' format is also supported." << endl;
+	cout << "\t-ow\t Output file containing the depth of the residual water layer W after the algorithm. If this parameter is not set, the data is not saved. Most image format are supported." << endl;
+	cout << "\t-f\t Preprocess the terrain to fill the pits." << endl;
+	cout << "\t-v\t Verbose. Prints real-time status of the program." << endl;
+	cout << "\t-h\t Shows this help and exits." << endl;
+	cout << endl;
+	cout << "2013 (c) Jose Maria Noguera and Antonio Rueda. University of Jaen." << endl << endl;
 }
 
 //-----------------------------------------------------------------
@@ -131,7 +131,7 @@ int init( int argc, char *argv[], Grid &grid, Parameters &param )
 {
 	if( argc < 2 ){
 		printHelp( argv[0] );
-         return -1;
+		return -1;
 	}
 
 	//default values
@@ -226,13 +226,13 @@ int init( int argc, char *argv[], Grid &grid, Parameters &param )
 		return -1;
 	}
 
-    try {
+	try {
 		grid.loadHGT(file.c_str(), x, y, 90, 90);
-    } catch(std::exception &e) {
-        cerr << "Error loading input DEM file." << endl;
+	} catch(std::exception &e) {
+		cerr << "Error loading input DEM file." << endl;
 		cout << e.what() << endl;
-        return -1;
-    }
+		return -1;
+	}
 	param.endThreshold = stopPercent/100.0f * param.initW * grid.getDimX() * grid.getDimY();
 	//cout << "end threshold is: " << endThreshold << endl;
 	return 0;
@@ -255,7 +255,7 @@ int main(int argc, char *argv[])
 		QCoreApplication a(argc, argv);
 	#endif
 
-    Grid grid;
+	Grid grid;
 	Parameters param;
 	int numIter;
 
@@ -266,12 +266,9 @@ int main(int argc, char *argv[])
 	}
 
 	if( param.fill ){
-
 		cout << "Filling DEM..." << endl;
-
 		grid.setW(FIRST_PASS_WATER);
 		numIter = doDry( grid, param.verbose );
-
 		cout << endl << "Number of iterations: " << numIter << endl;
 	}
 
@@ -284,7 +281,7 @@ int main(int argc, char *argv[])
 
 	cout << endl << "Number of iterations: " << numIter << endl;
 
-    try {
+	try {
 		if( isPly(param.outputDA) )
 			grid.savePLY( param.outputDA.c_str() );
 		else if( !grid.saveImageDA(param.outputDA.c_str()) ){
@@ -295,9 +292,9 @@ int main(int argc, char *argv[])
 			if( !grid.saveImageW( param.outputW.c_str()) )
 				cout << "Error saving W image: " << param.outputW << "." << endl;
 		}
-    } catch(std::exception &e) {
+	} catch(std::exception &e) {
 		cout << "Error saving image: " << e.what() << endl;
-        return 1;
-    }
+		return 1;
+	}
 	return 0;
 }
